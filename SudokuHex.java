@@ -5,7 +5,7 @@
 
 /**
  * @class SudokuHex
- * @brief Representación del sudoku que se quiere resolver
+ * @brief RepresentaciÃ³n del sudoku que se quiere resolver
  */
 public class SudokuHex {
     //Matriz de casilla
@@ -20,7 +20,7 @@ public class SudokuHex {
      */
     public SudokuHex (String template){
 	int i=0;
-        //pasamos a minúsculas, para aceptar también sudokus escrito en mayus
+        //pasamos a minÃºsculas, para aceptar tambiÃ©n sudokus escrito en mayus
         template = template.toLowerCase();
         //Leemos char a char y vamor rellenando las casillas
         for (int fila=0; fila<16; fila++){
@@ -32,8 +32,8 @@ public class SudokuHex {
                 i++;
             }                                       
         }
-        //Con los valores de las casilla, realizamos la primera actualización
-        //Cada una de las casilla vacias tendrán todos los valores posibles
+        //Con los valores de las casilla, realizamos la primera actualizaciÃ³n
+        //Cada una de las casilla vacias tendrÃ¡n todos los valores posibles
         //con los que que puede ser rellenada
         this.actualizarTodo();
         
@@ -41,20 +41,20 @@ public class SudokuHex {
 
     /**
      * @fn solve
-     * @brief función principal de la prática. Se encarga de explorar el 
-     * árbol de estados asociado al sudoku, primero se elige una casilla
+     * @brief funciÃ³n principal de la prÃ¡tica. Se encarga de explorar el note
+     * Ã¡rbol de estados asociado al sudoku, primero se elige una casilla
      * no rellena y se intenta rellenar, una vez rellenada se pasa a rellenar 
-     * otra nueva, si al rellenarse con un determinado número el sudoku queda 
-     * en esta irresoluble entonces da marcha atrás y quita dicho número,
-     * probando otros números.
+     * otra nueva, si al rellenarse con un determinado nÃºmero el sudoku queda 
+     * en esta irresoluble entonces da marcha atrÃ¡s y quita dicho nÃºmero,
+     * probando otros nÃºmeros.
      */
     public void solve() {
-        //Elegimos la casilla más prometedora
+        //Elegimos la casilla mÃ¡s prometedora
         int[] pos = this.elegirCasilla();
         int fila = pos[0];
         int col = pos[1];
-        //Si no hay casilla más prometedora es porque todas están rellena
-        //Damos el sudoku por resuleto y volvemos atrás
+        //Si no hay casilla mÃ¡s prometedora es porque todas estÃ¡n rellena
+        //Damos el sudoku por resuleto y volvemos atrÃ¡s
         if(fila<0 || col<0){
             this.fin = true;
             return;
@@ -68,16 +68,16 @@ public class SudokuHex {
                 //insertamos el valor
                 this.matriz[fila][col].valor=valorActual;
                 this.actualizarSelectivamente(fila, col);
-                //volvemos a llamar la función solve
+                //volvemos a llamar la funciÃ³n solve
                 this.solve();
-                //Si el sudoku ya esta resuelto y quedan números que probar
+                //Si el sudoku ya esta resuelto y quedan nÃºmeros que probar
                 //cortamos dichas pruebas, ya no nos hacen falta
                 if(this.fin){return;}
             }
         }
-        //Si ninguno de los número probados nos ha funcionado,
-        //dejamos al casilla sin rellenar y la vuelta atrás nos hará probar
-        //otro número en una casilla anteriormente rellenada
+        //Si ninguno de los nÃºmero probados nos ha funcionado,
+        //dejamos al casilla sin rellenar y la vuelta atrÃ¡s nos harÃ¡ probar
+        //otro nÃºmero en una casilla anteriormente rellenada
         this.quitar(fila, col);
     }
     
@@ -111,10 +111,10 @@ public class SudokuHex {
     
     /**
      * @fn elegirCasilla
-     * @brief Elige la casilla más prometedora a ser rellenada.
-     * Dicha casilla será aquella que está vacía y tiene el menor número de
+     * @brief Elige la casilla mÃ¡s prometedora a ser rellenada.
+     * Dicha casilla serÃ¡ aquella que estÃ¡ vacÃ­a y tiene el menor nÃºmero de
      * valores posibles.
-     * @return array con la fila y columna de la casilla más prometedora
+     * @return array con la fila y columna de la casilla mÃ¡s prometedora
      */
     public int[] elegirCasilla(){
         int minimo = 17;
@@ -123,10 +123,10 @@ public class SudokuHex {
         //Reorremos el sudoku en busca de la cailla       
         for (int fila=0; fila<16; fila++){
             for (int col=0; col<16; col++){
-                //Si la casilla está vacia la tenemos en cuenta
+                //Si la casilla estÃ¡ vacia la tenemos en cuenta
                 if (this.matriz[fila][col].valor == '.'){
                     tam = this.matriz[fila][col].numPosibles();
-                    //si su número de posibles es le menor de hasta ahora
+                    //si su nÃºmero de posibles es le menor de hasta ahora
                     //la cogemos como casilla mas prometedora
                     if (tam<minimo){
                         minimo = tam;
@@ -248,16 +248,16 @@ public class SudokuHex {
     
     /**
      * @fn compruebaFila
-     * @brief comprueba si un valor está ya o no en una fila
-     * @param fila fila a la que se le hace la comprobación
-     * @param valor valor el cual se quiere ver si está en la fila
-     * @return true si el valor aún no está en la fila
+     * @brief comprueba si un valor estÃ¡ ya o no en una fila
+     * @param fila fila a la que se le hace la comprobaciÃ³n
+     * @param valor valor el cual se quiere ver si estÃ¡ en la fila
+     * @return true si el valor aÃºn no estÃ¡ en la fila
      */
     public boolean compruebaFila(int fila, char valor){
         //iteramos sobre la fila
         for (int col=0; col<16; col++){
             //si el valor esta en alguna casilla del la fila ya no es posible
-            //que aparezca más veces en dicha fila
+            //que aparezca mÃ¡s veces en dicha fila
             if (this.matriz[fila][col].valor == valor){
                 return false;
             }
@@ -268,16 +268,16 @@ public class SudokuHex {
     
    /**
      * @fn compruebaCol
-     * @brief comprueba si un valor está ya o no en una columna
-     * @param col columna a la que se le hace la comprobación
-     * @param valor valor el cual se quiere ver si está en la columna
-     * @return true si el valor aún no está en la columna
+     * @brief comprueba si un valor estÃ¡ ya o no en una columna
+     * @param col columna a la que se le hace la comprobaciÃ³n
+     * @param valor valor el cual se quiere ver si estÃ¡ en la columna
+     * @return true si el valor aÃºn no estÃ¡ en la columna
      */
     public boolean compruebaCol(int col, char valor){
         //iteramos sobre la fila
         for (int fila=0; fila<16; fila++){
             //si el valor esta en alguna casilla del la columna ya no es posible
-            //que aparezca más veces en dicha columna
+            //que aparezca mÃ¡s veces en dicha columna
             if (this.matriz[fila][col].valor == valor){
                 return false;
             }
@@ -289,11 +289,11 @@ public class SudokuHex {
      * @fn compruebaSector
      * @param fila fila cualquiera del sector a comprobar
      * @param col columna cualquiera del sector a comprobar
-     * @param valor valor que se quiere comprobar si está o no en el sector
-     * @return true si el valor aún no está en el sector
+     * @param valor valor que se quiere comprobar si estÃ¡ o no en el sector
+     * @return true si el valor aÃºn no estÃ¡ en el sector
      */
     public boolean compruebaSector(int fila, int col, char valor){
-        //Hayamos los límites del sector de la casilla
+        //Hayamos los lÃ­mites del sector de la casilla
         int filaInicioSector = this.InicioSector(fila);
         int colInicioSector = this.InicioSector(col);
         int filaFinSector = filaInicioSector+4;
@@ -301,8 +301,8 @@ public class SudokuHex {
         //iteramos sobre el sector
         for (int i=filaInicioSector; i<filaFinSector; i++){
             for(int j=colInicioSector; j<colFinSector; j++){
-                //Si en alguún momento encontramos el valor,
-                //ya sabemos que valor ya está en el sector
+                //Si en alguÃºn momento encontramos el valor,
+                //ya sabemos que valor ya estÃ¡ en el sector
                 //y que por tanto no se puede poner mas veces
                 if (this.matriz[i][j].valor == valor){return false;}
             }
@@ -313,9 +313,9 @@ public class SudokuHex {
     /**
      * @fn quitar
      * @brief quita el valor de una casilla y actualiza el sudoku, quitantdo 
-     * las restricciones que dicho valor imponía al resto de casilla
+     * las restricciones que dicho valor imponÃ­a al resto de casilla
      * @param fila fila de la casilla que se ha vuelto a poner vacia
-     * @param col columna de la casilla que se ha vuelto a poner vacía
+     * @param col columna de la casilla que se ha vuelto a poner vacÃ­a
      */
     public void quitar(int fila, int col){
         this.matriz[fila][col].valor='.';
