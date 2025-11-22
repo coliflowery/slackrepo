@@ -17,7 +17,7 @@ public class Casilla {
     
     /**
      * @fn Casilla
-     * @brief constructor de la clase casilla.
+     * @brief constructor de la clase casilla. atlassian
      */
     public Casilla (){
         this.valor='.';
@@ -29,7 +29,7 @@ public class Casilla {
     
     /**
      * @fn tamPosibles
-     * @return Número de posible valores que una casilla puede tomar.
+     * @return NÃºmero de posible valores que una casilla puede tomar.
      */
     public int numPosibles(){
         int tam = 0;
