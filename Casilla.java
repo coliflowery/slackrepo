@@ -17,7 +17,7 @@ public class Casilla {
     
     /**
      * @fn Casilla
-     * @brief constructor de la clase casilla. atlassian
+     * @brief constructor de la clase casilla. atlassian demo
      */
     public Casilla (){
         this.valor='.';
